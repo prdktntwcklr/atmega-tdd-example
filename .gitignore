@@ -1,4 +1,3 @@
-*.bin
-*.hex
-*.pdf
+/Build
+/Datasheets
 .vscode/settings.json
