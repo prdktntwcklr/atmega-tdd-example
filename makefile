@@ -10,12 +10,16 @@ PARTNO = m168
 PORT = COM6
 PROGRAMMER = avrispv2
 
+BUILDDIR = Build
+INCDIR = Inc
+SRCDIR = Src
+
 .PHONY: all upload erase build clean
 
 all: build upload
 
 # upload to chip
-upload: $(FILENAME).hex
+upload: $(BUILDDIR)/$(FILENAME).hex
 	$(AVRDUDE) $(DFLAGS) -U flash:w:$^
 
 # perform chip erase	
@@ -24,11 +28,12 @@ erase:
 
 # compile binary
 build:
-	$(CC) $(CFLAGS) $(FILENAME).c -o $(FILENAME).bin
+	mkdir -p $(BUILDDIR)
+	$(CC) $(CFLAGS) $(SRCDIR)/$(FILENAME).c -o $(BUILDDIR)/$(FILENAME).bin -I$(INCDIR)
 
 # build hex file from binary
-$(FILENAME).hex: $(FILENAME).bin
+$(BUILDDIR)/$(FILENAME).hex: $(BUILDDIR)/$(FILENAME).bin
 	avr-objcopy -j .text -j .data -O ihex $^ $@
 
 clean:
-	rm -f $(FILENAME).bin $(FILENAME).hex
+	rm -rf $(BUILDDIR)
