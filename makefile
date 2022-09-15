@@ -1,20 +1,32 @@
-AVRDUDE=avrdude -p ${DEVICESHORT} -P ${PORT} -c ${PROGRAMMER}
-COMPILE=avr-gcc -Wall -g -Os -mmcu=${DEVICE}
+FILENAME = main
 
-DEVICE=atmega168a
-DEVICESHORT=m168
-FILENAME=main
-PROGRAMMER=avrispv2
-PORT=COM6
+CC = avr-gcc
+CFLAGS = -Wall -g -Os -mmcu=$(MCU)
+MCU = atmega168a
+
+AVRDUDE = avrdude 
+DFLAGS = -p $(PARTNO) -P $(PORT) -c $(PROGRAMMER)
+PARTNO = m168
+PROGRAMMER = avrispv2
+PORT = COM6
 
 all: build upload
 
+# upload to chip
+upload: $(FILENAME).hex
+	$(AVRDUDE) $(DFLAGS) -U flash:w:$(FILENAME).hex
+
+# perform chip erase	
+erase:
+	$(AVRDUDE) $(DFLAGS) -e
+
+# compile binary
 build:
-	${COMPILE} -o ${FILENAME}.bin ${FILENAME}.c 
-	avr-objcopy -j .text -j .data -O ihex ${FILENAME}.bin ${FILENAME}.hex
-	
-upload: ${FILENAME}.hex
-	${AVRDUDE} -U flash:w:${FILENAME}.hex
-	
+	$(CC) $(CFLAGS) $(FILENAME).c -o $(FILENAME).bin
+
+# build hex file from binary
+$(FILENAME).hex: $(FILENAME).bin
+	avr-objcopy -j .text -j .data -O ihex $^ $@
+
 clean:
-	rm -f ${FILENAME}.bin ${FILENAME}.hex
+	rm -f $(FILENAME).bin $(FILENAME).hex
