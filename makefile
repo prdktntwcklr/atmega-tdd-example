@@ -7,14 +7,16 @@ MCU = atmega168a
 AVRDUDE = avrdude 
 DFLAGS = -p $(PARTNO) -P $(PORT) -c $(PROGRAMMER)
 PARTNO = m168
-PROGRAMMER = avrispv2
 PORT = COM6
+PROGRAMMER = avrispv2
+
+.PHONY: all upload erase build clean
 
 all: build upload
 
 # upload to chip
 upload: $(FILENAME).hex
-	$(AVRDUDE) $(DFLAGS) -U flash:w:$(FILENAME).hex
+	$(AVRDUDE) $(DFLAGS) -U flash:w:$^
 
 # perform chip erase	
 erase:
