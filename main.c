@@ -1,14 +1,8 @@
 /* main.c */
 
 #include "main.h"
-//#include <avr/io.h>
-#include <stdint.h>
+#include <avr/io.h>
 #include <util/delay.h>
-
-#define _MMIO_BYTE(mem_addr) (*(volatile uint8_t *)(mem_addr))
-
-#define DDRD  _MMIO_BYTE(0x2A)
-#define PORTD _MMIO_BYTE(0x2B)
 
 int main(void)
 {
