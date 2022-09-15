@@ -13,12 +13,12 @@ void tearDown(void)
 {
 }
 
-void test_main_should_callLedInit(void)
+void test_main_should_initLED(void)
 {
     led_init_Expect();
     led_toggle_Ignore();
 
-    testableMain();
+    TEST_ASSERT_EQUAL(0, testableMain());
 }
 
 #endif // TEST
