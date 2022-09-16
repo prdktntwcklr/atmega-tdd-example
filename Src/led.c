@@ -3,11 +3,7 @@
 #ifndef TEST
 #include "avr/io.h"
 #else
-#include "stdint.h"
-uint8_t DDRD = 0;
-#define DDD3 3
-uint8_t PORTD = 0;
-#define PD3 3
+#include "testable_micro_registers.h"
 #endif
 
 extern void led_init(void)

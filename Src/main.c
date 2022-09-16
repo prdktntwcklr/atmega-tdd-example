@@ -2,7 +2,12 @@
 
 #include "main.h"
 #include "led.h"
+
+#ifndef TEST
 #include <util/delay.h>
+#else
+#define _delay_ms(...) (void)(0)
+#endif
 
 #ifndef TEST
 #define FOREVER (1)

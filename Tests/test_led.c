@@ -2,10 +2,10 @@
 
 #include "unity.h"
 
-#include "led.h"
+#define EXTERN 
 
-extern uint8_t DDRD;
-extern uint8_t PORTD;
+#include "testable_micro_registers.h"
+#include "led.h"
 
 void setUp(void)
 {
