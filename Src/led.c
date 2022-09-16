@@ -1,17 +1,23 @@
 #include "led.h"
-#include <avr/io.h>
 
-#define sbi(byte, bit) ((byte) |= (bit))
-#define tbi(byte, bit) ((byte) ^= (bit))
+#ifndef TEST
+#include "avr/io.h"
+#else
+#include "stdint.h"
+uint8_t DDRD = 0;
+#define DDD3 3
+uint8_t PORTD = 0;
+#define PD3 3
+#endif
 
 extern void led_init(void)
 {
 	/* configure LED pin as output */
-	sbi(DDRD, (1 << DDD3));
+	DDRD |= (1 << DDD3);
 }
 
 extern void led_toggle(void)
 {
 	/* toggle LED pin */
-	tbi(PORTD, (1 << PD3));
+	PORTD ^= (1 << PD3);
 }

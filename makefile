@@ -18,7 +18,7 @@ SRCS=$(wildcard $(SRCDIR)/*.c)
 
 .PHONY: all upload erase build clean
 
-all: build upload
+all: build
 
 # upload to chip
 upload: $(BUILDDIR)/$(FILENAME).hex
