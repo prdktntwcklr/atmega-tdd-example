@@ -14,6 +14,8 @@ BUILDDIR = Build
 INCDIR = Inc
 SRCDIR = Src
 
+SRCS=$(wildcard $(SRCDIR)/*.c)
+
 .PHONY: all upload erase build clean
 
 all: build upload
@@ -29,7 +31,7 @@ erase:
 # compile binary
 build:
 	mkdir -p $(BUILDDIR)
-	$(CC) $(CFLAGS) $(SRCDIR)/$(FILENAME).c -o $(BUILDDIR)/$(FILENAME).bin -I$(INCDIR)
+	$(CC) $(CFLAGS) $(SRCS) -o $(BUILDDIR)/$(FILENAME).bin -I$(INCDIR)
 
 # build hex file from binary
 $(BUILDDIR)/$(FILENAME).hex: $(BUILDDIR)/$(FILENAME).bin

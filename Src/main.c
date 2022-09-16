@@ -2,7 +2,7 @@
 
 #include "main.h"
 #include "led.h"
-// #include <util/delay.h>
+#include <util/delay.h>
 
 #ifndef TEST
 #define FOREVER (1)
@@ -21,7 +21,7 @@ int testableMain(void)
 	while(FOREVER)
 	{
 		led_toggle();
-		// _delay_ms(1000);
+		_delay_ms(1000);
 	}
 	
 	return 0;
