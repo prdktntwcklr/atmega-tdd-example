@@ -6,14 +6,18 @@
 #include "testable_micro_registers.h"
 #endif
 
+#define LED_DDR  (DDRD)
+#define LED_PORT (PORTD)
+#define LED_PIN  (3U)
+
 extern void led_init(void)
 {
 	/* configure LED pin as output */
-	DDRD |= (1 << DDD3);
+	LED_DDR |= (1 << LED_PIN);
 }
 
 extern void led_toggle(void)
 {
 	/* toggle LED pin */
-	PORTD ^= (1 << PD3);
+	LED_PORT ^= (1 << LED_PIN);
 }

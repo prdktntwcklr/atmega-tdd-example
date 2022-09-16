@@ -10,7 +10,4 @@
 EXTERN uint8_t DDRD;
 EXTERN uint8_t PORTD;
 
-#define DDD3 3
-#define PD3 3
-
 #endif
