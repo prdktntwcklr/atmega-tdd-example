@@ -1,33 +1,33 @@
 /* main.c */
 
 #include "main.h"
-#include <avr/io.h>
+#include "led.h"
+
+#ifndef TEST
 #include <util/delay.h>
+#else
+#define _delay_ms(...) (void)(0)
+#endif
 
-static void led_init(void);
-static void led_toggle(void);
+#ifndef TEST
+#define FOREVER (1)
+#else
+#define FOREVER (0)
+#endif
 
+#ifndef TEST
 int main(void)
+#else
+int testableMain(void)
+#endif
 {
 	led_init();
 	
-	while(1)
+	while(FOREVER)
 	{
 		led_toggle();
 		_delay_ms(1000);
 	}
 	
 	return 0;
-}
-
-static void led_init(void)
-{
-	/* configure LED pin as output */
-	DDRD |= (1 << DDD3);
-}
-
-static void led_toggle(void)
-{
-	/* toggle LED pin */
-	PORTD ^= (1 << PD3);
 }
