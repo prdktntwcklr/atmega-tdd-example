@@ -1,4 +1,4 @@
-# ATmega168A programming
+ # ATmega168A programming
 
 This project demonstrates the use of unit testing and test-driven development (TDD) when writing code for the ATmega168A microcontroller.
 
@@ -17,7 +17,7 @@ This project demonstrates the use of unit testing and test-driven development (T
 <ol dir="auto">
 <li>AVR 8-bit GNU Toolchain</li>
 <li>AVRDUDE</li>
-<li>Ceedling Unit Testing Framework ([http://www.throwtheswitch.org/ceedling](http://www.throwtheswitch.org/ceedling))</li>
+<li>Ceedling Unit Testing Framework</li>
 </ol>
 
 ## Unit Tests
