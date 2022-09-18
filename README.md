@@ -12,11 +12,11 @@ This project demonstrates the use of unit testing and test-driven development (T
 <li>Some wires</li>
 </ol>
 
-## Software Requirements
+## Software Tools
 <ol dir="auto">
-<li>AVR 8-bit GNU Toolchain</li>
-<li>AVRDUDE</li>
-<li>Ceedling Unit Testing Framework</li>
+<li>AVR 8-bit GNU Toolchain 3.7.0</li>
+<li>AVRDUDE 5.11</li>
+<li>Ceedling Unit Testing Framework 0.31.1</li>
 </ol>
 
 ## Unit Tests
