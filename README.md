@@ -8,7 +8,6 @@ This project demonstrates the use of unit testing and test-driven development (T
 <li>Microcontroller (ATmega168A, 28-PDIP Package)</li>
 <li>LED</li>
 <li>Current-limiting resistor</li>
-<li>Crystal oscillator</li>
 <li>Programmer (I used the Pololu USB AVR Programmer v2.1)</li>
 <li>Some wires</li>
 </ol>
