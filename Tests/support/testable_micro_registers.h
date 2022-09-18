@@ -1,3 +1,5 @@
+/* testable_micro_registers.h */
+
 #ifndef TESTABLE_MICRO_REGISTERS_H
 #define TESTABLE_MICRO_REGISTERS_H
 
