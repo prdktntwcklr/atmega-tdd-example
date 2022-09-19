@@ -16,7 +16,7 @@ SRCDIR = Src
 
 SRCS=$(wildcard $(SRCDIR)/*.c)
 
-.PHONY: all upload erase build clean
+.PHONY: all erase test upload build clean
 
 all: build
 
@@ -34,7 +34,7 @@ upload: $(BUILDDIR)/$(FILENAME).hex
 	$(AVRDUDE) $(DFLAGS) -U flash:w:$^
 
 # compile binary
-build:
+build $(BUILDDIR)/$(FILENAME).bin:
 	mkdir -p $(BUILDDIR)
 	$(CC) $(CFLAGS) $(SRCS) -o $(BUILDDIR)/$(FILENAME).bin -I$(INCDIR)
 
