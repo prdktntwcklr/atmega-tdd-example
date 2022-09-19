@@ -20,13 +20,18 @@ SRCS=$(wildcard $(SRCDIR)/*.c)
 
 all: build
 
-# upload to chip
-upload: $(BUILDDIR)/$(FILENAME).hex
-	$(AVRDUDE) $(DFLAGS) -U flash:w:$^
-
 # perform chip erase	
 erase:
 	$(AVRDUDE) $(DFLAGS) -e
+
+# run unit tests
+test: build
+	ceedling clobber
+	ceedling test:all
+
+# upload to chip
+upload: $(BUILDDIR)/$(FILENAME).hex
+	$(AVRDUDE) $(DFLAGS) -U flash:w:$^
 
 # compile binary
 build:
