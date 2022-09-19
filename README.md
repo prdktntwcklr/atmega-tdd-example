@@ -22,5 +22,5 @@ This project demonstrates the use of unit testing and test-driven development (T
 ## Running unit tests
 <ol dir="auto">
 <li>To run unit tests, execute the following command from within the home directory:</li>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="npm run start"><pre class="notranslate"><code>ceedling test:all</code></pre></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="npm run start"><pre class="notranslate"><code>make test</code></pre></div>
 </ol>
