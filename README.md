@@ -1,6 +1,6 @@
- # ATmega168A programming
+ # ATmega TDD Example
 
-This project demonstrates the use of unit testing and test-driven development (TDD) when writing code for ATmega microcontroller series.
+This project demonstrates the use of unit testing and test-driven development (TDD) when writing code for the ATmega microcontroller series.
 
 ## Hardware requirements
 <ol dir="auto">
