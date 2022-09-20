@@ -5,7 +5,7 @@
 #ifndef TEST
 #include "avr/io.h"
 #else
-#include "testable_micro_registers.h"
+#include "testable_mcu_registers.h"
 #endif
 
 #define LED_DDR  (DDRD)

@@ -6,7 +6,7 @@
 
 #define EXTERN 
 
-#include "testable_micro_registers.h"
+#include "testable_mcu_registers.h"
 #include "led.h"
 
 void setUp(void)

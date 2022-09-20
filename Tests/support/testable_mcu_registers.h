@@ -1,7 +1,7 @@
-/* testable_micro_registers.h */
+/* testable_mcu_registers.h */
 
-#ifndef TESTABLE_MICRO_REGISTERS_H
-#define TESTABLE_MICRO_REGISTERS_H
+#ifndef TESTABLE_MCU_REGISTERS_H
+#define TESTABLE_MCU_REGISTERS_H
 
 #include "stdint.h"
 

@@ -8,7 +8,7 @@
 #endif
 
 #ifdef TEST
-int testableMain(void);
+int testable_main(void);
 #endif
 
 #endif
