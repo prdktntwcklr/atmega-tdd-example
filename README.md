@@ -3,7 +3,7 @@
 This project demonstrates the use of unit testing and test-driven development (TDD) when writing code for the ATmega microcontroller series.
 
 ## Hardware requirements
-<ol dir="auto">
+<ol>
 <li>Breadboard</li>
 <li>Microcontroller (ATmega168A, 28-PDIP Package)</li>
 <li>LED</li>
@@ -13,7 +13,7 @@ This project demonstrates the use of unit testing and test-driven development (T
 </ol>
 
 ## Toolchain
-<ol dir="auto">
+<ol>
 <li>AVR 8-bit GNU Toolchain 3.7.0</li>
 <li>AVRDUDE 5.11</li>
 <li>Ceedling Unit Testing Framework 0.31.1</li>
@@ -21,7 +21,7 @@ This project demonstrates the use of unit testing and test-driven development (T
 </ol>
 
 ## Running unit tests
-<ol dir="auto">
-<li>To run unit tests, execute the following command from within the home directory:</li>
-<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="npm run start"><pre class="notranslate"><code>make test</code></pre></div>
-</ol>
+To run unit tests, execute the following command from within the home directory:
+```
+$ make test
+```
