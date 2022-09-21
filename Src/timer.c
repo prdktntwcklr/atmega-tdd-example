@@ -1,31 +1,82 @@
 #include "timer.h"
 #include "led.h"
+
+#ifndef TEST
 #include "avr/io.h"
 #include "avr/interrupt.h"
+#else
+#include "testable_mcu_registers.h"
+#define cli() (void)(0);
+#define sei() (void)(0);
+#endif
+
+#define TIMER_FULL_VAL   (255U)
+#define TIMER_TICKS_VAL  (156U)
+#define TIMER_RELOAD_VAL ((TIMER_FULL_VAL) - (TIMER_TICKS_VAL))
+
+static volatile uint16_t time_stamp = 0U;
 
 /*
- * @brief 
+ * @brief Initializes the timer peripheral.
  */
 extern void timer_init(void)
 {
-    /* TODO: set timer ticks to 244 which corresponds to freq of 4.00230533 Hz */
-
     cli();                                 /* disable global interrupts */
     TIMSK0 |= (1 << TOIE0);                /* enable Timer/Counter0 overflow interrupt */
     sei();                                 /* enable global interrupts */
-    TCCR0B |= ((1 << CS02) | (1 << CS00)); /* set clock to clk/1024, this starts the timer */
+    TCNT0 = TIMER_RELOAD_VAL;              /* load Timer/Counter0 register */
+    TCCR0B |= ((1 << CS01) | (1 << CS00)); /* set clock to clk/64, this starts the timer */
+}
+
+/*
+ * @brief Sets the time_stamp to a specific value.
+ */
+extern void timer_set_stamp(const uint16_t stamp)
+{
+    TIMSK0 &= ~(1 << TOIE0); /* disable Timer/Counter0 overflow interrupt */
+    time_stamp = stamp;
+    TIMSK0 |= (1 << TOIE0);  /* enable Timer/Counter0 overflow interrupt */
+}
+
+/*
+ * @brief Returns the current time_stamp value.
+ */
+extern uint16_t timer_get_stamp(void)
+{
+    TIMSK0 &= ~(1 << TOIE0); /* disable Timer/Counter0 overflow interrupt */
+    uint16_t ret_val = time_stamp;
+    TIMSK0 |= (1 << TOIE0);  /* enable Timer/Counter0 overflow interrupt */
+    return ret_val;
+}
+
+/*
+ * @brief Returns TRUE if the deadline has been reached or passed.
+ */
+extern bool timer_deadline_reached(const uint16_t deadline)
+{
+    return ((int16_t)(time_stamp - deadline) >= 0);
 }
 
 /*
  * @brief Timer/Counter0 Overflow Interrupt
  */
+#ifndef TEST
 ISR(TIMER0_OVF_vect)
+#else
+void testable_isr_timer0_ovf_vect(void)
+#endif
 {
-    static int count = 0;
+    time_stamp += 10;
 
-    if(++count == 1)
+    if(time_stamp % 1000 == 0)
     {
         led_toggle();
-        count = 0;
+
+        if(time_stamp == 65000)
+        {
+            time_stamp = 0;
+        }
     }
+
+    TCNT0 = TIMER_RELOAD_VAL; /* reload Timer/Counter0 register */
 }
