@@ -1,5 +1,4 @@
 #include "timer.h"
-#include "led.h"
 
 #ifndef TEST
 #include "avr/io.h"
@@ -67,16 +66,6 @@ void testable_isr_timer0_ovf_vect(void)
 #endif
 {
     time_stamp += 10;
-
-    if(time_stamp % 1000 == 0)
-    {
-        led_toggle();
-
-        if(time_stamp == 65000)
-        {
-            time_stamp = 0;
-        }
-    }
 
     TCNT0 = TIMER_RELOAD_VAL; /* reload Timer/Counter0 register */
 }
