@@ -1,3 +1,5 @@
+/* test_timer.c */
+
 #ifdef TEST
 
 #include "unity.h"
