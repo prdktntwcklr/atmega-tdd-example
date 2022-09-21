@@ -4,12 +4,6 @@
 #include "superloop.h"
 
 #ifndef TEST
-#include <util/delay.h>
-#else
-#define _delay_ms(...) (void)(0)
-#endif
-
-#ifndef TEST
 int main(void)
 #else
 int testable_main(void)
@@ -19,7 +13,7 @@ int testable_main(void)
 	
 	while(superloop_run())
 	{
-		_delay_ms(1000);
+		// TODO: enter power saving mode here
 	}
 	
 	return 0;
