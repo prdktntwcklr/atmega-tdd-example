@@ -1,3 +1,5 @@
+/* timer.c */
+
 #include "timer.h"
 
 #ifndef TEST
