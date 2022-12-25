@@ -13,10 +13,10 @@ This project demonstrates the use of unit testing and test-driven development (T
 
 ## Toolchain
 
-1. AVR 8-bit GNU Toolchain 3.7.0
-2. AVRDUDE 5.11
-3. Ceedling Unit Testing Framework 0.31.1
-4. GNU Make 4.2.1
+- AVR 8-bit GNU Toolchain 3.7.0
+- AVRDUDE 5.11
+- Ceedling Unit Testing Framework 0.31.1
+- GNU Make 4.2.1
 
 ## Running unit tests
 
