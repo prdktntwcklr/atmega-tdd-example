@@ -20,11 +20,11 @@ extern void superloop_init(void)
  */
 extern bool superloop_run(void)
 {
-    static uint16_t last_toggle_stamp = 0;
+    static uint16_t deadline = 0;
 
-    if(timer_deadline_reached(last_toggle_stamp + TOGGLE_INTERVAL_IN_MS))
+    if(timer_deadline_reached(deadline))
     {
-        last_toggle_stamp = timer_get_stamp();
+        deadline += TOGGLE_INTERVAL_IN_MS;
 
         led_toggle();
     }
