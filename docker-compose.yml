@@ -1,0 +1,7 @@
+services:
+  build-test:
+    build: .
+    command: bash -c "make clean && make"
+  unit-tests:
+    build: .
+    command: bash -c "ceedling clobber && ceedling test:all"

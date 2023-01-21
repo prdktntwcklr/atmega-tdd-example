@@ -3,6 +3,10 @@
 This project demonstrates the use of unit testing and test-driven development
 (TDD) when writing code for the Atmel / Microchip ATmega microcontroller series.
 
+The unit tests are run exclusively on the developer's PC (the "host") instead of
+on the microcontroller (the "target") using a Dockerized environment
+detailled below (see [running unit tests](#running-unit-tests)).
+
 ## Hardware
 
 1. Breadboard
@@ -21,11 +25,25 @@ This project demonstrates the use of unit testing and test-driven development
 
 ## Running unit tests
 
-To run unit tests, execute the following command from within the home directory:
+This project uses a Dockerized environment from which the unit tests can be
+executed. This saves developers from having to install all required dependencies
+themselves.
+
+First, make sure that you have [Docker](https://www.docker.com/) installed and
+running on your machine. Then, from within the project directory, build the
+image:
 
 ```bash
-make test
+docker compose build
 ```
+
+Next, you can run all unit tests by invoking:
+
+```bash
+docker compose run unit-tests
+```
+
+This should shown that all tests are passing successfully.
 
 ## Further reading
 
