@@ -18,10 +18,16 @@ detailed below (see [running unit tests](#running-unit-tests)).
 
 ## Toolchain
 
-- AVR 8-bit GNU Toolchain 3.7.0
-- AVRDUDE 5.11
-- Ceedling Unit Testing Framework 0.31.1
-- GNU Make 4.2.1
+- avr-libc 2.0.0
+- avrdude 6.3
+- binutils-avr 2.26
+- ceedling 0.31.1
+- cmock 2.5.4
+- gcc 11.3.0
+- gcc-avr 5.4.0
+- make 4.3
+- ruby 3.0.2
+- unity 2.5.4
 
 ## Running unit tests
 
