@@ -47,5 +47,5 @@ This should show that all tests are passing successfully.
 
 ## Further reading
 
-Grenning, J. W. (2011): *Test-Driven Development for Embedded C.* Raleigh, NC:
+- Grenning, J. W. (2011): *Test-Driven Development for Embedded C.* Raleigh, NC:
 Pragmatic Programmers.

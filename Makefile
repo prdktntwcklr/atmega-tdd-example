@@ -16,18 +16,13 @@ SRCDIR = Src
 
 SRCS=$(wildcard $(SRCDIR)/*.c)
 
-.PHONY: all erase test upload build clean
+.PHONY: all erase upload build clean
 
 all: build
 
 # perform chip erase	
 erase:
 	$(AVRDUDE) $(DFLAGS) -e
-
-# run unit tests
-test: build
-	ceedling clobber
-	ceedling test:all
 
 # upload to chip
 upload: $(BUILDDIR)/$(FILENAME).hex
