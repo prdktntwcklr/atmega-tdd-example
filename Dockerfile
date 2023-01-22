@@ -14,5 +14,5 @@ RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && \
 RUN apt-get update
 
 # install dependencies
-RUN apt-get install -y avrdude gcc-avr binutils-avr avr-libc make gcc ruby 
+RUN xargs -a packages.txt apt-get install -y
 RUN gem install ceedling

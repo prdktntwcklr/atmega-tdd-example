@@ -1,0 +1,7 @@
+avr-libc
+avrdude
+binutils-avr
+gcc
+gcc-avr
+make
+ruby

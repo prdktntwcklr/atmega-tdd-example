@@ -1,2 +1,8 @@
-# Classify all '.h' files as C:
+# classify all '.h' files as C
 *.h linguist-language=C
+
+# set line endings to default
+* text=auto
+
+# declare files that will always have unix-style line endings on checkout
+*.txt text eol=lf
