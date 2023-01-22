@@ -17,7 +17,7 @@
 
 static volatile uint16_t time_stamp = 0U;
 
-/*
+/**
  * @brief Initializes the timer peripheral.
  */
 extern void timer_init(void)
@@ -29,17 +29,17 @@ extern void timer_init(void)
     TCCR0B |= ((1 << CS01) | (1 << CS00)); /* set clock to clk/64, this starts the timer */
 }
 
-/*
+/**
  * @brief Sets the time_stamp to a specific value.
  */
-extern void timer_set_stamp(const uint16_t stamp)
+extern void timer_set_stamp(uint16_t stamp)
 {
     TIMSK0 &= ~(1 << TOIE0); /* disable Timer/Counter0 overflow interrupt */
     time_stamp = stamp;
     TIMSK0 |= (1 << TOIE0);  /* enable Timer/Counter0 overflow interrupt */
 }
 
-/*
+/**
  * @brief Returns the current time_stamp value.
  */
 extern uint16_t timer_get_stamp(void)
@@ -50,15 +50,15 @@ extern uint16_t timer_get_stamp(void)
     return ret_val;
 }
 
-/*
+/**
  * @brief Returns TRUE if the deadline has been reached or passed.
  */
-extern bool timer_deadline_reached(const uint16_t deadline)
+extern bool timer_deadline_reached(uint16_t deadline)
 {
     return ((int16_t)(time_stamp - deadline) >= 0);
 }
 
-/*
+/**
  * @brief Timer/Counter0 Overflow Interrupt
  */
 #ifndef TEST

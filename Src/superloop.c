@@ -6,7 +6,7 @@
 
 #define TOGGLE_INTERVAL_IN_MS (1000U)
 
-/*
+/**
  * @brief Initializes the peripherals needed in the superloop.
  */
 extern void superloop_init(void)
@@ -15,7 +15,7 @@ extern void superloop_init(void)
     timer_init();
 }
 
-/*
+/**
  * @brief Runs the superloop. Returns TRUE by default.
  */
 extern bool superloop_run(void)

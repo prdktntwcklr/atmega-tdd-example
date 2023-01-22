@@ -15,7 +15,6 @@ int testable_main(void)
 	
 	while(superloop_run())
 	{
-		/* send mcu to sleep, sequence recommended in avr/sleep.h */
 		low_power_enter();
 	}
 	

@@ -5,7 +5,7 @@ This project demonstrates the use of unit testing and test-driven development
 
 The unit tests are run exclusively on the developer's PC (the "host") instead of
 on the microcontroller (the "target") using a Dockerized environment
-detailled below (see [running unit tests](#running-unit-tests)).
+detailed below (see [running unit tests](#running-unit-tests)).
 
 ## Hardware
 
@@ -43,9 +43,9 @@ Next, you can run all unit tests by invoking:
 docker compose run unit-tests
 ```
 
-This should shown that all tests are passing successfully.
+This should show that all tests are passing successfully.
 
 ## Further reading
 
-Grenning, J. W. (2011) *Test driven development in C.* Raleigh, NC: Pragmatic
-Programmers.
+Grenning, J. W. (2011): *Test-Driven Development for Embedded C.* Raleigh, NC:
+Pragmatic Programmers.

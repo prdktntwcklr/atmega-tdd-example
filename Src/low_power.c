@@ -1,3 +1,5 @@
+/* low_power.c */
+
 #include "low_power.h"
 #include "stdbool.h"
 
@@ -13,7 +15,7 @@
 #define sleep_disable() (void)(0);
 #endif
 
-/*
+/**
  * @brief Initializes the low power mode.
  */
 void low_power_init(void)
@@ -21,10 +23,10 @@ void low_power_init(void)
     set_sleep_mode(SLEEP_MODE_IDLE);
 }
 
-/*
+/**
  * @brief Enters the low power mode.
  *
- * @note Sequence recommended in avr/sleep.h.
+ * @note  Sequence recommended in avr/sleep.h.
  */
 void low_power_enter(void)
 {
