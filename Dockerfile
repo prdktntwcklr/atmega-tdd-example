@@ -13,6 +13,6 @@ RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && \
 # update package information
 RUN apt-get update
 
-# install dependencies
+# install required packages
 RUN xargs -a packages.txt apt-get install -y
 RUN gem install ceedling

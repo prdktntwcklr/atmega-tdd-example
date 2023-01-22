@@ -1,11 +1,14 @@
 # ATmega TDD Example
 
 This project demonstrates the use of unit testing and test-driven development
-(TDD) when writing code for the Atmel / Microchip ATmega microcontroller series.
+(TDD) when writing code for the Atmel / Microchip ATmega series microcontroller.
+Ceedling ([ThrowTheSwitch/Ceedling](https://github.com/ThrowTheSwitch/Ceedling))
+is used as the unit testing framework.
 
 The unit tests are run exclusively on the developer's PC (the "host") instead of
-on the microcontroller (the "target") using a Dockerized environment
-detailed below (see [running unit tests](#running-unit-tests)).
+on the microcontroller itself (the "target"). To streamline this process, the
+project uses a Docker environment described below
+(see [running unit tests](#running-unit-tests)).
 
 ## Hardware
 
@@ -23,7 +26,7 @@ detailed below (see [running unit tests](#running-unit-tests)).
 - binutils-avr 2.26
 - ceedling 0.31.1
 - cmock 2.5.4
-- gcc 11.3.0
+- gcc 11.2.0
 - gcc-avr 5.4.0
 - make 4.3
 - ruby 3.0.2
@@ -31,13 +34,13 @@ detailed below (see [running unit tests](#running-unit-tests)).
 
 ## Running unit tests
 
-This project uses a Dockerized environment from which the unit tests can be
-executed. This saves developers from having to install all required dependencies
-themselves.
+This project uses a Dockerized environment from within which the unit tests can
+be executed. This saves developers from having to install all required
+dependencies themselves on their local workstations.
 
-First, make sure that you have [Docker](https://www.docker.com/) installed and
-running on your machine. Then, from within the project directory, build the
-image:
+First, make sure that you have [Docker](https://www.docker.com/get-started/)
+installed and running on your machine. Then, from within the root directory of
+the prokect, run the following command to build the image:
 
 ```bash
 docker compose build
@@ -49,7 +52,9 @@ Next, you can run all unit tests by invoking:
 docker compose run unit-tests
 ```
 
-This should show that all tests are passing successfully.
+This should show that all tests are passing successfully:
+
+![All unit tests ran successfully.](Docs/run-unit-tests.gif)
 
 ## Further reading
 

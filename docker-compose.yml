@@ -1,7 +1,15 @@
 services:
+  build-image:
+    image: atmega-tdd
+    command: bash -c "echo build-image completed."
+    build: .
   build-test:
-    build: .
+    image: atmega-tdd
     command: bash -c "make clean && make"
+    depends_on:
+    - build-image
   unit-tests:
-    build: .
+    image: atmega-tdd
     command: bash -c "ceedling clobber && ceedling test:all"
+    depends_on:
+    - build-image
