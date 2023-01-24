@@ -1,14 +1,16 @@
 # ATmega TDD Example
 
 This project demonstrates the use of unit testing and test-driven development
-(TDD) when writing code for the Atmel / Microchip ATmega series microcontroller.
-Ceedling ([ThrowTheSwitch/Ceedling](https://github.com/ThrowTheSwitch/Ceedling))
-is used as the unit testing framework.
+(TDD) when writing bare-metal code for an ATmega series microcontroller.
 
-The unit tests are run exclusively on the developer's PC (the "host") instead of
-on the microcontroller itself (the "target"). To streamline this process, the
-project uses a Docker environment described below
-(see [running unit tests](#running-unit-tests)).
+Ceedling ([ThrowTheSwitch/Ceedling](https://github.com/ThrowTheSwitch/Ceedling))
+is used as the unit testing framework, but the codebase can easily be adapted
+to accommodate other testing frameworks such as CppUTest or Google Test.
+
+In this example, the unit tests are run exclusively on the developer's machine
+(the "host") instead of on the microcontroller itself (the "target"). To
+streamline this process among developers, the project uses a Docker environment
+described below (see [running unit tests](#running-unit-tests)).
 
 ## Hardware
 
@@ -18,6 +20,9 @@ project uses a Docker environment described below
 4. Current-limiting resistor
 5. Programmer (e.g. Pololu USB AVR Programmer v2.1)
 6. Some jumper wires
+
+Details on how to connect these components can be found in
+```Docs/schematic.pdf```.
 
 ## Toolchain
 
@@ -36,11 +41,11 @@ project uses a Docker environment described below
 
 This project uses a Dockerized environment from within which the unit tests can
 be executed. This saves developers from having to install all required
-dependencies themselves on their local workstations.
+packages themselves on their local workstations.
 
 First, make sure that you have [Docker](https://www.docker.com/get-started/)
 installed and running on your machine. Then, from within the root directory of
-the prokect, run the following command to build the image:
+the project, run the following command to build the image:
 
 ```bash
 docker compose build
@@ -54,7 +59,7 @@ docker compose run unit-tests
 
 This should show that all tests are passing successfully:
 
-![All unit tests ran successfully.](Docs/run-unit-tests.gif)
+![All unit tests ran successfully.](Docs/Img/run-unit-tests.gif)
 
 ## Further reading
 
