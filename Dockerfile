@@ -3,16 +3,16 @@ FROM ubuntu:22.04
 # set working directory
 WORKDIR /app
 
-# copy everything
-COPY . .
+# copy packages.txt into image
+COPY packages.txt .
 
 # set timezone
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && \
     echo $CONTAINER_TIMEZONE > /etc/timezone
 
-# update package information
-RUN apt-get update
-
-# install required packages
-RUN xargs -a packages.txt apt-get install -y
-RUN gem install ceedling
+# update package information and install required packages
+RUN apt-get update && \
+    xargs -a packages.txt apt-get install -y && \
+    gem install ceedling && \
+    apt-get autoremove -y && \
+    apt-get clean

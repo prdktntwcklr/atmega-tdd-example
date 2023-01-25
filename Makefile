@@ -24,18 +24,22 @@ all: build
 erase:
 	$(AVRDUDE) $(DFLAGS) -e
 
-# upload to chip
+# upload to chip command
 upload: $(BUILDDIR)/$(FILENAME).hex
 	$(AVRDUDE) $(DFLAGS) -U flash:w:$^
 
-# compile binary
-build $(BUILDDIR)/$(FILENAME).bin:
-	mkdir -p $(BUILDDIR)
-	$(CC) $(CFLAGS) $(SRCS) -o $(BUILDDIR)/$(FILENAME).bin -I$(INCDIR)
+# build command
+build: $(BUILDDIR)/$(FILENAME).hex
 
 # build hex file from binary
 $(BUILDDIR)/$(FILENAME).hex: $(BUILDDIR)/$(FILENAME).bin
 	avr-objcopy -j .text -j .data -O ihex $^ $@
 
+# compile binary from source files
+$(BUILDDIR)/$(FILENAME).bin:
+	mkdir -p $(BUILDDIR)
+	$(CC) $(CFLAGS) $(SRCS) -o $(BUILDDIR)/$(FILENAME).bin -I$(INCDIR)
+
+# clean command
 clean:
 	rm -rf $(BUILDDIR)
