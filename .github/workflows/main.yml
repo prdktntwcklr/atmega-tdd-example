@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
   
 jobs:
-  build-test:
+  build-hex:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -19,14 +19,14 @@ jobs:
         run:  docker compose build
       - name: build hex file
         run:  docker compose run --rm build-hex
-      - name: download build artifact
+      - name: upload build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: build-file
+          name: hex-file
           path: Build/main.hex
   unit-tests:
     runs-on: ubuntu-latest
-    needs: build-test # project has to build successfully before unit tests
+    needs: build-hex # project has to build successfully before unit tests
     timeout-minutes: 5
     steps:
       - name: checkout code
