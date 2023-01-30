@@ -1,5 +1,7 @@
 # ATmega TDD Example
 
+![Tests](https://github.com/prdktntwcklr/atmega-tdd-example/workflows/Tests/badge.svg)
+
 This project demonstrates the use of unit testing and test-driven development
 (TDD) when writing bare-metal code for an ATmega series microcontroller.
 
