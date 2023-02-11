@@ -4,5 +4,6 @@ binutils-avr
 cmake
 gcc
 gcc-avr
+git
 make
 ruby

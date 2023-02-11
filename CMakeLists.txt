@@ -8,4 +8,13 @@ project(
     DESCRIPTION "ATmega TDD Example" 
     LANGUAGES C)
 
+include(FetchContent)
+
+FetchContent_Declare(
+    unity
+    GIT_REPOSITORY https://github.com/prdktntwcklr/Unity.git
+    GIT_SHALLOW TRUE)
+FetchContent_MakeAvailable(unity)
+
 add_subdirectory(Src)
+add_subdirectory(Tests)

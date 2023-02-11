@@ -36,6 +36,7 @@ Details on how to connect these components can be found in
 - cmock 2.5.4
 - gcc 11.2.0
 - gcc-avr 5.4.0
+- git 2.34.1
 - make 4.3
 - ruby 3.0.2
 - unity 2.5.4

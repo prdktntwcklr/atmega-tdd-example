@@ -1,5 +1,6 @@
-/Build
-/Datasheets
-/Hardware
+Build/
+Datasheets/
+External/Unity/
+Hardware/
 .vscode/
 *.code-workspace
