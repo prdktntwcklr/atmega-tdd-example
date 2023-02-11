@@ -31,6 +31,7 @@ Details on how to connect these components can be found in
 - avr-libc 2.0.0
 - avrdude 6.3
 - binutils-avr 2.26
+- cmake 3.22.1
 - ceedling 0.31.1
 - cmock 2.5.4
 - gcc 11.2.0

@@ -5,7 +5,7 @@ services:
     build: .
   build-hex:
     image: atmega-tdd
-    command: bash -c "make clean && make"
+    command: bash -c "mkdir -p Build && cd Build && cmake .. && cmake --build ."
     depends_on:
     - build-image
     volumes:
