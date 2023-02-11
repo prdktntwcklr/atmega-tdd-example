@@ -1,6 +1,7 @@
 avr-libc
 avrdude
 binutils-avr
+cmake
 gcc
 gcc-avr
 make

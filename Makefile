@@ -1,45 +1,30 @@
-FILENAME = main
+# sample makefile to erase and upload to chip
 
-CC = avr-gcc
-CFLAGS = -Wall -g -Os -mmcu=$(MCU)
-MCU = atmega168a
+TARGET = main
 
-AVRDUDE = avrdude 
-DFLAGS = -p $(PARTNO) -P $(PORT) -c $(PROGRAMMER)
+AVRDUDE = avrdude
 PARTNO = m168
 PORT = COM6
 PROGRAMMER = avrispv2
+DFLAGS = -p $(PARTNO) -P $(PORT) -c $(PROGRAMMER)
 
 BUILDDIR = Build
-INCDIR = Inc
-SRCDIR = Src
+SRCDIR   = Src
 
-SRCS=$(wildcard $(SRCDIR)/*.c)
+.PHONY: all help erase upload
 
-.PHONY: all erase upload build clean
+all: help
 
-all: build
+# show help
+help:
+	@echo Valid targets:
+	@echo ... erase  # erases chip
+	@echo ... upload # uploads hex to chip
 
-# perform chip erase	
+# perform chip erase
 erase:
 	$(AVRDUDE) $(DFLAGS) -e
 
 # upload to chip command
-upload: $(BUILDDIR)/$(FILENAME).hex
+upload: $(BUILDDIR)/$(SRCDIR)/$(TARGET).hex
 	$(AVRDUDE) $(DFLAGS) -U flash:w:$^
-
-# build command
-build: $(BUILDDIR)/$(FILENAME).hex
-
-# build hex file from binary
-$(BUILDDIR)/$(FILENAME).hex: $(BUILDDIR)/$(FILENAME).bin
-	avr-objcopy -j .text -j .data -O ihex $^ $@
-
-# compile binary from source files
-$(BUILDDIR)/$(FILENAME).bin:
-	mkdir -p $(BUILDDIR)
-	$(CC) $(CFLAGS) $(SRCS) -o $(BUILDDIR)/$(FILENAME).bin -I$(INCDIR)
-
-# clean command
-clean:
-	rm -rf $(BUILDDIR)
