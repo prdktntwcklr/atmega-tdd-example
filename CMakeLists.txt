@@ -16,5 +16,5 @@ FetchContent_Declare(
     GIT_SHALLOW TRUE)
 FetchContent_MakeAvailable(unity)
 
-add_subdirectory(Src)
+add_subdirectory(Src Bin)
 add_subdirectory(Tests)

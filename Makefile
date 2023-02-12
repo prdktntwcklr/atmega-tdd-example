@@ -9,7 +9,7 @@ PROGRAMMER = avrispv2
 DFLAGS = -p $(PARTNO) -P $(PORT) -c $(PROGRAMMER)
 
 BUILDDIR = Build
-SRCDIR   = Src
+BinDIR   = Bin
 
 .PHONY: all help erase upload
 
@@ -26,5 +26,5 @@ erase:
 	$(AVRDUDE) $(DFLAGS) -e
 
 # upload to chip command
-upload: $(BUILDDIR)/$(SRCDIR)/$(TARGET).hex
+upload: $(BUILDDIR)/$(BINDIR)/$(TARGET).hex
 	$(AVRDUDE) $(DFLAGS) -U flash:w:$^
