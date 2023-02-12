@@ -8,4 +8,4 @@ project(
     DESCRIPTION "ATmega TDD Example" 
     LANGUAGES C)
 
-add_subdirectory(Src)
+add_subdirectory(Src Bin)
