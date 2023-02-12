@@ -2,8 +2,8 @@ avr-libc
 avrdude
 binutils-avr
 cmake
+g++
 gcc
 gcc-avr
 git
 make
-ruby

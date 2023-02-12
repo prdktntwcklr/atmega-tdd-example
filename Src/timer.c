@@ -2,7 +2,7 @@
 
 #include "timer.h"
 
-#ifndef TEST
+#ifndef UNIT_TESTS
 #include "avr/io.h"
 #include "avr/interrupt.h"
 #else
@@ -23,6 +23,7 @@ static volatile uint16_t time_stamp = 0U;
 extern void timer_init(void)
 {
     cli();                                 /* disable global interrupts */
+    time_stamp = 0;                        /* reset time_stamp */
     TIMSK0 |= (1 << TOIE0);                /* enable Timer/Counter0 overflow interrupt */
     sei();                                 /* enable global interrupts */
     TCNT0 = TIMER_RELOAD_VAL;              /* load Timer/Counter0 register */
@@ -61,7 +62,7 @@ extern bool timer_deadline_reached(uint16_t deadline)
 /**
  * @brief Timer/Counter0 Overflow Interrupt
  */
-#ifndef TEST
+#ifndef UNIT_TESTS
 ISR(TIMER0_OVF_vect)
 #else
 void testable_isr_timer0_ovf_vect(void)

@@ -3,17 +3,8 @@
 #include "low_power.h"
 #include "stdbool.h"
 
-#ifndef TEST
 #include "avr/interrupt.h"
 #include "avr/sleep.h"
-#else
-#define cli() (void)(0);
-#define sei() (void)(0);
-#define set_sleep_mode(...) (void)(0);
-#define sleep_enable() (void)(0);
-#define sleep_cpu() (void)(0);
-#define sleep_disable() (void)(0);
-#endif
 
 /**
  * @brief Initializes the low power mode.

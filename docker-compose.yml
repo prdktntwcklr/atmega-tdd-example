@@ -12,7 +12,7 @@ services:
     - ./:/app
   unit-tests:
     image: atmega-tdd
-    command: bash -c "ceedling clobber && ceedling test:all"
+    command: bash -c "mkdir -p Build && cd Build && cmake -DTARGET_GROUP=test .. && cmake --build . && ctest --verbose"
     depends_on:
     - build-image
     volumes:

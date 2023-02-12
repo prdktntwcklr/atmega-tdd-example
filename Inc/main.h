@@ -7,7 +7,7 @@
 #define F_CPU 1000000UL /* 1 MHz clock speed factory default */
 #endif
 
-#ifdef TEST
+#ifdef UNIT_TESTS
 int testable_main(void);
 #endif
 

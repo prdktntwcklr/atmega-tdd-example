@@ -5,9 +5,9 @@
 This project demonstrates the use of unit testing and test-driven development
 (TDD) when writing bare-metal code for an ATmega series microcontroller.
 
-Ceedling ([ThrowTheSwitch/Ceedling](https://github.com/ThrowTheSwitch/Ceedling))
+CppUTest ([cpputest/cpputest](https://github.com/cpputest/cpputest))
 is used as the unit testing framework, but the codebase can easily be adapted
-to accommodate other testing frameworks such as CppUTest or Google Test.
+to accommodate other testing frameworks such as Ceedling or Google Test.
 
 In this example, the unit tests are run exclusively on the developer's machine
 (the "host") instead of on the microcontroller itself (the "target"). To
@@ -31,15 +31,13 @@ Details on how to connect these components can be found in
 - avr-libc 2.0.0
 - avrdude 6.3
 - binutils-avr 2.26
-- ceedling 0.31.1
 - cmake 3.22.1
-- cmock 2.5.4
-- gcc 11.2.0
+- cpputest latest-passing-build
+- g++ 11.3.0
+- gcc 11.3.0
 - gcc-avr 5.4.0
 - git 2.34.1
 - make 4.3
-- ruby 3.0.2
-- unity 2.5.4
 
 ## Running unit tests
 

@@ -2,7 +2,7 @@
 
 #include "led.h"
 
-#ifndef TEST
+#ifndef UNIT_TESTS
 #include "avr/io.h"
 #else
 #include "testable_mcu_registers.h"
