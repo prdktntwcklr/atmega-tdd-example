@@ -59,9 +59,7 @@ Next, you can run all unit tests by invoking:
 docker compose run unit-tests
 ```
 
-This should show that all tests are passing successfully:
-
-![All unit tests ran successfully.](Docs/Img/run-unit-tests.gif)
+This should show that all tests are passing successfully.
 
 ## Further reading
 
