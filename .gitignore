@@ -1,5 +1,5 @@
-/Build
-/Datasheets
-/Hardware
+[Bb]uild/
+[Dd]atasheets/
+[Hh]ardware/
 .vscode/
 *.code-workspace

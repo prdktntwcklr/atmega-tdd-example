@@ -31,14 +31,14 @@
 
 :paths:
   :test:
-    - +:Tests/**
-    - -:Tests/support
+    - +:.
+    - -:support/**
   :source:
-    - Src/**
+    - ../Src/**
   :include:
-    - Inc/**  
+    - ../Inc/**  
   :support:
-    - Tests/support
+    - support
   :libraries: []
 
 :defines:

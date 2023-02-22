@@ -12,7 +12,7 @@ services:
     - ./:/app
   unit-tests:
     image: atmega-tdd
-    command: bash -c "ceedling clobber && ceedling test:all"
+    command: bash -c "cd Tests && ceedling version && ceedling clobber && ceedling test:all"
     depends_on:
     - build-image
     volumes:
