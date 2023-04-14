@@ -1,4 +1,6 @@
 # sample makefile to erase and upload to chip
+#
+# Note: erase and upload do not work from within a Docker container on Windows
 
 TARGET = main
 
@@ -9,7 +11,7 @@ PROGRAMMER = avrispv2
 DFLAGS = -p $(PARTNO) -P $(PORT) -c $(PROGRAMMER)
 
 BUILDDIR = Build
-BinDIR   = Bin
+BINDIR   = Bin
 
 .PHONY: all help erase upload
 
