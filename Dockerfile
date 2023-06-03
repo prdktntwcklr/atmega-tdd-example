@@ -13,6 +13,12 @@ RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && \
 # update package information and install required packages
 RUN apt-get update && \
     xargs -a packages.txt apt-get install -y && \
+    pip install --no-cache-dir pre-commit && \
     gem install ceedling && \
     apt-get autoremove -y && \
     apt-get clean
+
+# clean up stale packages
+RUN apt-get clean -y && \
+    apt-get autoremove --purge -y && \
+    rm -rf /var/lib/apt/lists/*
