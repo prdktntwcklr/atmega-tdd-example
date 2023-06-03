@@ -26,38 +26,23 @@ described below (see [running unit tests](#running-unit-tests)).
 Details on how to connect these components can be found in
 ```Docs/schematic.pdf```.
 
-## Toolchain
-
-- avr-libc 2.0.0
-- avrdude 6.3
-- binutils-avr 2.26
-- ceedling 0.31.1
-- cmake 3.22.1
-- cmock 2.5.4
-- gcc 11.2.0
-- gcc-avr 5.4.0
-- make 4.3
-- ruby 3.0.2
-- unity 2.5.4
-
 ## Running unit tests
 
 This project uses a Dockerized environment from within which the unit tests can
-be executed. This saves developers from having to install all required
-packages themselves on their local workstations.
+be executed. This saves developers from having to set up the development
+environment themselves on their local workstations.
 
 First, make sure that you have [Docker](https://www.docker.com/get-started/)
-installed and running on your machine. Then, from within the root directory of
-the project, run the following command to build the image:
+installed and running on your machine. Next, install and activate the
+[Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+extension for [Visual Studio Code](https://code.visualstudio.com/).
+
+Opening the workspace should then allow you to reopen the project in a container
+with all required packages already installed. From within the ```Tests/```
+directory, you can then simply run:
 
 ```bash
-docker compose build
-```
-
-Next, you can run all unit tests by invoking:
-
-```bash
-docker compose run unit-tests
+ceedling test:all
 ```
 
 This should show that all tests are passing successfully:
