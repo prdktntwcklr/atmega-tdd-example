@@ -4,13 +4,9 @@
 
 #include "low_power.h"
 
-void setUp(void)
-{
-}
+void setUp(void) {}
 
-void tearDown(void)
-{
-}
+void tearDown(void) {}
 
 /* no tests implemented */
 

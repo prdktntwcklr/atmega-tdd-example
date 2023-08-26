@@ -4,7 +4,7 @@
 
 #include "unity.h"
 
-#define EXTERN 
+#define EXTERN
 
 #include "testable_mcu_registers.h"
 #include "timer.h"
@@ -17,9 +17,7 @@ void setUp(void)
     TCCR0B = 0x00;
 }
 
-void tearDown(void)
-{
-}
+void tearDown(void) {}
 
 void test_timer_init_should_setUpRegistersCorrectly(void)
 {
