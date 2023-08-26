@@ -22,11 +22,12 @@ static volatile uint16_t time_stamp = 0U;
  */
 extern void timer_init(void)
 {
-    cli();                                 /* disable global interrupts */
-    TIMSK0 |= (1 << TOIE0);                /* enable Timer/Counter0 overflow interrupt */
-    sei();                                 /* enable global interrupts */
-    TCNT0 = TIMER_RELOAD_VAL;              /* load Timer/Counter0 register */
-    TCCR0B |= ((1 << CS01) | (1 << CS00)); /* set clock to clk/64, this starts the timer */
+    cli();                    /* disable global interrupts */
+    TIMSK0 |= (1 << TOIE0);   /* enable Timer/Counter0 overflow interrupt */
+    sei();                    /* enable global interrupts */
+    TCNT0 = TIMER_RELOAD_VAL; /* load Timer/Counter0 register */
+    TCCR0B |= ((1 << CS01) |
+               (1 << CS00)); /* set clock to clk/64, this starts the timer */
 }
 
 /**
@@ -36,7 +37,7 @@ extern void timer_set_stamp(uint16_t stamp)
 {
     TIMSK0 &= ~(1 << TOIE0); /* disable Timer/Counter0 overflow interrupt */
     time_stamp = stamp;
-    TIMSK0 |= (1 << TOIE0);  /* enable Timer/Counter0 overflow interrupt */
+    TIMSK0 |= (1 << TOIE0); /* enable Timer/Counter0 overflow interrupt */
 }
 
 /**
@@ -46,7 +47,7 @@ extern uint16_t timer_get_stamp(void)
 {
     TIMSK0 &= ~(1 << TOIE0); /* disable Timer/Counter0 overflow interrupt */
     uint16_t ret_val = time_stamp;
-    TIMSK0 |= (1 << TOIE0);  /* enable Timer/Counter0 overflow interrupt */
+    TIMSK0 |= (1 << TOIE0); /* enable Timer/Counter0 overflow interrupt */
     return ret_val;
 }
 

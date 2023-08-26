@@ -8,20 +8,16 @@
 #include "mock_low_power.h"
 #include "mock_superloop.h"
 
-void setUp(void)
-{
-}
+void setUp(void) {}
 
-void tearDown(void)
-{
-}
+void tearDown(void) {}
 
 void test_main_should_initPeripheralsThenRunMainLoop(void)
 {
     superloop_init_Expect();
     low_power_init_Expect();
     low_power_enter_Ignore();
-    
+
     superloop_run_ExpectAndReturn(true);
     superloop_run_ExpectAndReturn(true);
     superloop_run_ExpectAndReturn(false);

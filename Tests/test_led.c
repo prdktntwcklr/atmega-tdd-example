@@ -4,7 +4,7 @@
 
 #include "unity.h"
 
-#define EXTERN 
+#define EXTERN
 
 #include "testable_mcu_registers.h"
 #include "led.h"
@@ -16,9 +16,7 @@ void setUp(void)
     PORTD = 0x00;
 }
 
-void tearDown(void)
-{
-}
+void tearDown(void) {}
 
 void test_led_ledInitShouldSetCorrectLedAsOutputAndTurnLedOff(void)
 {
@@ -50,7 +48,7 @@ void test_led_shouldTurnOnAndOffCorrectly(void)
     led_turn_on();
     TEST_ASSERT_EQUAL_HEX8(0x4A, PORTD);
     led_turn_off();
-    TEST_ASSERT_EQUAL_HEX8(0x42, PORTD);    
+    TEST_ASSERT_EQUAL_HEX8(0x42, PORTD);
 }
 
 void test_led_ledToggleShouldToggleLedCorrectly(void)
@@ -66,17 +64,17 @@ void test_led_ledToggleShouldToggleLedCorrectly(void)
     TEST_ASSERT_EQUAL_HEX8(0x3F, PORTD);
 
     led_toggle();
-    TEST_ASSERT_EQUAL_HEX8(0x37, PORTD);    
+    TEST_ASSERT_EQUAL_HEX8(0x37, PORTD);
 }
 
 void test_led_shouldReportOnOffStateCorrectly(void)
 {
     led_init();
     TEST_ASSERT_TRUE(led_is_off());
-    
+
     led_turn_on();
     TEST_ASSERT_TRUE(led_is_on());
-    
+
     led_toggle();
     TEST_ASSERT_TRUE(led_is_off());
 }

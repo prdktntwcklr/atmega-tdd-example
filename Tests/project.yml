@@ -36,7 +36,7 @@
   :source:
     - ../Src/**
   :include:
-    - ../Inc/**  
+    - ../Inc/**
   :support:
     - support
   :libraries: []
