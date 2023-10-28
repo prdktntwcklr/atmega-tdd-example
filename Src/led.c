@@ -1,5 +1,3 @@
-/* led.c */
-
 #include "led.h"
 
 #ifndef TEST
@@ -18,7 +16,7 @@
 extern void led_init(void)
 {
     /* configure LED pin as output */
-    LED_DDR |= (1 << LED_PIN);
+    LED_DDR |= (1U << LED_PIN);
     led_turn_off();
 }
 
@@ -27,7 +25,7 @@ extern void led_init(void)
  */
 extern void led_turn_on(void)
 {
-    LED_PORT |= (1 << LED_PIN);
+    LED_PORT |= (1U << LED_PIN);
 }
 
 /**
@@ -35,7 +33,7 @@ extern void led_turn_on(void)
  */
 extern void led_turn_off(void)
 {
-    LED_PORT &= ~(1 << LED_PIN);
+    LED_PORT &= ~(1U << LED_PIN);
 }
 
 /**
@@ -43,7 +41,7 @@ extern void led_turn_off(void)
  */
 extern void led_toggle(void)
 {
-    LED_PORT ^= (1 << LED_PIN);
+    LED_PORT ^= (1U << LED_PIN);
 }
 
 /**
@@ -51,7 +49,7 @@ extern void led_toggle(void)
  */
 extern bool led_is_on(void)
 {
-    return ((LED_PORT) & (1 << LED_PIN));
+    return ((LED_PORT) & (1U << LED_PIN));
 }
 
 /**

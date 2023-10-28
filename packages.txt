@@ -2,6 +2,7 @@ avr-libc
 avrdude
 binutils-avr
 clang-format
+clang-tidy
 cmake
 gcc
 gcc-avr
