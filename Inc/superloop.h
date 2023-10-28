@@ -1,5 +1,3 @@
-/* superloop.h */
-
 #ifndef SUPERLOOP_H
 #define SUPERLOOP_H
 

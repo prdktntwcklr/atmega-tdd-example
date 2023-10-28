@@ -1,5 +1,3 @@
-/* low_power.c */
-
 #include "low_power.h"
 #include "stdbool.h"
 
@@ -31,6 +29,7 @@ void low_power_init(void)
 void low_power_enter(void)
 {
     cli();
+
     if(true) /* possible to add condition here */
     {
         sleep_enable();
@@ -38,5 +37,6 @@ void low_power_enter(void)
         sleep_cpu();
         sleep_disable();
     }
+
     sei();
 }

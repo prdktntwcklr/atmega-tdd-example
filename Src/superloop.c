@@ -1,5 +1,3 @@
-/* superloop.c */
-
 #include "superloop.h"
 #include "led.h"
 #include "timer.h"

@@ -1,5 +1,3 @@
-/* main.c */
-
 #include "main.h"
 #include "low_power.h"
 #include "superloop.h"
@@ -13,7 +11,7 @@ int testable_main(void)
     superloop_init();
     low_power_init();
 
-    while(superloop_run())
+    while(superloop_run()) // NOLINT
     {
         low_power_enter();
     }

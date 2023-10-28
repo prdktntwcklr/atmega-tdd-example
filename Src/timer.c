@@ -1,5 +1,3 @@
-/* timer.c */
-
 #include "timer.h"
 
 #ifndef TEST
@@ -14,6 +12,7 @@
 #define TIMER_FULL_VAL   (255U)
 #define TIMER_TICKS_VAL  (156U)
 #define TIMER_RELOAD_VAL ((TIMER_FULL_VAL) - (TIMER_TICKS_VAL))
+#define TIMER_INC_VAL    (10U)
 
 static volatile uint16_t time_stamp = 0U;
 
@@ -22,12 +21,20 @@ static volatile uint16_t time_stamp = 0U;
  */
 extern void timer_init(void)
 {
-    cli();                    /* disable global interrupts */
-    TIMSK0 |= (1 << TOIE0);   /* enable Timer/Counter0 overflow interrupt */
-    sei();                    /* enable global interrupts */
-    TCNT0 = TIMER_RELOAD_VAL; /* load Timer/Counter0 register */
-    TCCR0B |= ((1 << CS01) |
-               (1 << CS00)); /* set clock to clk/64, this starts the timer */
+    /* disable global interrupts */
+    cli();
+
+    /* enable Timer/Counter0 overflow interrupt */
+    TIMSK0 |= (1U << TOIE0);
+
+    /* enable global interrupts */
+    sei();
+
+    /* load Timer/Counter0 register */
+    TCNT0 = TIMER_RELOAD_VAL;
+
+    /* set clock to clk/64, this starts the timer */
+    TCCR0B |= ((1U << CS01) | (1U << CS00));
 }
 
 /**
@@ -35,9 +42,13 @@ extern void timer_init(void)
  */
 extern void timer_set_stamp(uint16_t stamp)
 {
-    TIMSK0 &= ~(1 << TOIE0); /* disable Timer/Counter0 overflow interrupt */
+    /* disable Timer/Counter0 overflow interrupt */
+    TIMSK0 &= ~(1U << TOIE0);
+
     time_stamp = stamp;
-    TIMSK0 |= (1 << TOIE0); /* enable Timer/Counter0 overflow interrupt */
+
+    /* enable Timer/Counter0 overflow interrupt */
+    TIMSK0 |= (1U << TOIE0);
 }
 
 /**
@@ -45,9 +56,14 @@ extern void timer_set_stamp(uint16_t stamp)
  */
 extern uint16_t timer_get_stamp(void)
 {
-    TIMSK0 &= ~(1 << TOIE0); /* disable Timer/Counter0 overflow interrupt */
+    /* disable Timer/Counter0 overflow interrupt */
+    TIMSK0 &= ~(1U << TOIE0);
+
     uint16_t ret_val = time_stamp;
-    TIMSK0 |= (1 << TOIE0); /* enable Timer/Counter0 overflow interrupt */
+
+    /* enable Timer/Counter0 overflow interrupt */
+    TIMSK0 |= (1U << TOIE0);
+
     return ret_val;
 }
 
@@ -68,7 +84,8 @@ ISR(TIMER0_OVF_vect)
 void testable_isr_timer0_ovf_vect(void)
 #endif
 {
-    time_stamp += 10;
+    time_stamp += TIMER_INC_VAL;
 
-    TCNT0 = TIMER_RELOAD_VAL; /* reload Timer/Counter0 register */
+    /* reload Timer/Counter0 register */
+    TCNT0 = TIMER_RELOAD_VAL;
 }

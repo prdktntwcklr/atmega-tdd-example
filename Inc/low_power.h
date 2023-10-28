@@ -1,5 +1,3 @@
-/* low_power.h */
-
 #ifndef LOW_POWER_H
 #define LOW_POWER_H
 
