@@ -1,8 +1,8 @@
 #include "timer.h"
 
 #ifndef TEST
-#include "avr/io.h"
 #include "avr/interrupt.h"
+#include "avr/io.h"
 #else
 #include "testable_mcu_registers.h"
 #define cli() (void)(0);
