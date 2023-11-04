@@ -10,9 +10,19 @@ services:
     - build-image
     volumes:
     - ./:/app
+  static-analysis:
+    image: atmega-tdd
+    command: bash -c "mkdir -p Build && cd Build && cmake .. && \
+                      cmake --build . && cd .. && chmod +x clang-tidy.sh && \
+                      ./clang-tidy.sh"
+    depends_on:
+    - build-image
+    volumes:
+    - ./:/app
   unit-tests:
     image: atmega-tdd
-    command: bash -c "cd Tests && ceedling version && ceedling clobber && ceedling test:all"
+    command: bash -c "cd Tests && ceedling version && ceedling clobber && \
+                      ceedling test:all"
     depends_on:
     - build-image
     volumes:
