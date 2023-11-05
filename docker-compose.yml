@@ -12,9 +12,7 @@ services:
     - ./:/app
   static-analysis:
     image: atmega-tdd
-    command: bash -c "mkdir -p Build && cd Build && cmake .. && \
-                      cmake --build . && cd .. && chmod +x clang-tidy.sh && \
-                      ./clang-tidy.sh"
+    command: bash -c "chmod +x clang-tidy.sh && ./clang-tidy.sh"
     depends_on:
     - build-image
     volumes:
