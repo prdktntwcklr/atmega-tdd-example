@@ -6,26 +6,8 @@
     ],
     "settings": {
         "files.associations": {
-            "delay.h": "c",
-            "stdint.h": "c",
-            "io.h": "c",
-            "iom168a.h": "c",
-            "iom168.h": "c",
-            "main.h": "c",
-            "led.h": "c",
-            "utils.h": "c",
-            "bit_manipulation.h": "c",
-            "runner.h": "c",
-            "executor.h": "c",
-            "stdbool.h": "c",
-            "superloop.h": "c",
-            "timer.h": "c",
-            "interrupt.h": "c",
-            "sleep.h": "c",
-            "low_power.h": "c",
-            "testable_mcu_registers.h": "c",
-            "fff.h": "c",
-            "commandlinetestrunner.h": "c"
+            "*.c": "c",
+            "*.h": "c"
         },
         "cSpell.words": [
             "Atmel",

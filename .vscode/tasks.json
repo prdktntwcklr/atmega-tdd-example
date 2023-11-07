@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Configure Project",
+            "command": "cmake",
+            "args": [
+                "-B", "${workspaceFolder}/Build"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Build Project",
+            "dependsOn": "Configure Project",
+            "command": "cmake --build .",
+            "options": {
+                "cwd": "${workspaceFolder}/Build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "base": "$gcc", 
+                "fileLocation": ["relative", ""]
+            }
+        }
+    ]
+}
