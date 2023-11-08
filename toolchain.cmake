@@ -22,16 +22,23 @@ set(AVR_PARTNO m168)
 set(AVR_PROGRAMMER avrispv2)
 set(F_CPU "1000000UL")
 
-# set serial port, works under Windows only
-set(PORT_NUMBER COM6)
-
-# set linker flags
-set(CMAKE_EXE_LINKER_FLAGS -mmcu=${AVR_MCU})
-
 # set compile options
 add_compile_options(
     -Wall
     -g
     -Os
     -mmcu=${AVR_MCU}
-    -DF_CPU=${F_CPU})
+    -DF_CPU=${F_CPU}
+    )
+
+# set linker options
+add_link_options(
+    -mmcu=${AVR_MCU}
+    )
+
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
