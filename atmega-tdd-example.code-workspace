@@ -21,6 +21,8 @@
             "microcontroller",
             "PDIP",
             "Pololu"
-        ]
+        ],
+        "ceedlingExplorer.projectPath": "./Tests",
+        "ceedlingExplorer.debugConfiguration": "Ceedling Test Explorer Debug"
     }
 }

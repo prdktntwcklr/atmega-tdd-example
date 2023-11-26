@@ -12,7 +12,8 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-vscode.cpptools"
+                "ms-vscode.cpptools",
+                "numaru.vscode-ceedling-test-adapter"
             ],
             "settings": {
                 "terminal.integrated.defaultProfile.linux": "bash"

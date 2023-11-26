@@ -6,6 +6,7 @@ clang-tidy
 cmake
 gcc
 gcc-avr
+gdb
 git
 make
 nano
