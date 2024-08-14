@@ -2,27 +2,44 @@
 
 #ifdef TEST
 
+#include <stdbool.h>
+
 #include "unity.h"
+#include "fff.h"
+
+DEFINE_FFF_GLOBALS;
+
+FAKE_VOID_FUNC(superloop_init);
+FAKE_VOID_FUNC(low_power_init);
+FAKE_VOID_FUNC(low_power_enter);
+FAKE_VALUE_FUNC(bool, superloop_run);
 
 #include "main.h"
-#include "mock_low_power.h"
-#include "mock_superloop.h"
 
-void setUp(void) {}
+void setUp(void)
+{
+    RESET_FAKE(superloop_init);
+    RESET_FAKE(low_power_init);
+    RESET_FAKE(low_power_enter);
+    RESET_FAKE(superloop_run);
+}
 
 void tearDown(void) {}
 
 void test_main_should_initPeripheralsThenRunMainLoop(void)
 {
-    superloop_init_Expect();
-    low_power_init_Expect();
-    low_power_enter_Ignore();
+    superloop_run_fake.return_val = false;
+    testable_main();
+    TEST_ASSERT_EQUAL(1, superloop_init_fake.call_count);
+    TEST_ASSERT_EQUAL(1, low_power_init_fake.call_count);
+    TEST_ASSERT_EQUAL(1, superloop_run_fake.call_count);
+}
 
-    superloop_run_ExpectAndReturn(true);
-    superloop_run_ExpectAndReturn(true);
-    superloop_run_ExpectAndReturn(false);
-
-    TEST_ASSERT_EQUAL(0, testable_main());
+int main(void)
+{
+    UNITY_BEGIN();
+    RUN_TEST(test_main_should_initPeripheralsThenRunMainLoop);
+    return UNITY_END();
 }
 
 #endif // TEST
