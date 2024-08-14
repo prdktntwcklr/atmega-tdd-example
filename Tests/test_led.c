@@ -79,4 +79,14 @@ void test_led_shouldReportOnOffStateCorrectly(void)
     TEST_ASSERT_TRUE(led_is_off());
 }
 
+int main(void)
+{
+    UNITY_BEGIN();
+    RUN_TEST(test_led_ledInitShouldSetCorrectLedAsOutputAndTurnLedOff);
+    RUN_TEST(test_led_shouldTurnOnAndOffCorrectly);
+    RUN_TEST(test_led_ledToggleShouldToggleLedCorrectly);
+    RUN_TEST(test_led_shouldReportOnOffStateCorrectly);
+    return UNITY_END();
+}
+
 #endif // TEST

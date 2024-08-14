@@ -8,7 +8,6 @@
 
 #include "testable_mcu_registers.h"
 #include "timer.h"
-#include "mock_led.h"
 
 void setUp(void)
 {
@@ -46,13 +45,23 @@ void test_timer_set_stamp_should_setTimeStampCorrectly(void)
     TEST_ASSERT_EQUAL(570, timer_get_stamp());
 }
 
-void test_timer_deadline_reached_should_returnReachedDeadlinesCorrectly(void)
+void test_timer_deadline_reached_should_returnDeadlinesCorrectly(void)
 {
     timer_set_stamp(200);
     TEST_ASSERT_FALSE(timer_deadline_reached(250));
 
     timer_set_stamp(300);
     TEST_ASSERT_TRUE(timer_deadline_reached(250));
+}
+
+int main(void)
+{
+    UNITY_BEGIN();
+    RUN_TEST(test_timer_init_should_setUpRegistersCorrectly);
+    RUN_TEST(test_timer_overflow_isr_should_incrementTimeStampBy10);
+    RUN_TEST(test_timer_set_stamp_should_setTimeStampCorrectly);
+    RUN_TEST(test_timer_deadline_reached_should_returnDeadlinesCorrectly);
+    return UNITY_END();
 }
 
 #endif // TEST
