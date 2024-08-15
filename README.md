@@ -39,18 +39,13 @@ extension for [Visual Studio Code](https://code.visualstudio.com/).
 
 Opening the workspace in Visual Studio Code should then prompt you with a
 textbox that allows you to reopen the project in a Docker container with all
-required packages already installed. You can then simply use `CMake` to first
-build for the `test` group and then use `CTest` to invoke the tests:
+required packages already installed. To invoke all unit tests, simply run:
 
 ```bash
-mkdir -p Build
-cd Build
-cmake -DTARGET_GROUP=test ..
-cmake --build .
-ctest Tests/ -V
+./unit-tests.sh
 ```
 
-All tests should pass successfully:
+This should show that all tests passing:
 
 ![All unit tests ran successfully.](Docs/run-unit-tests.jpg)
 

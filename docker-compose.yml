@@ -5,7 +5,7 @@ services:
     build: .
   build-hex:
     image: atmega-tdd
-    command: bash -c "mkdir -p Build && cd Build && cmake .. && cmake --build ."
+    command: bash -c "chmod +x build-app.sh && ./build-app.sh"
     depends_on:
     - build-image
     volumes:
@@ -19,7 +19,7 @@ services:
     - ./:/app
   unit-tests:
     image: atmega-tdd
-    command: bash -c "mkdir -p Build && cd Build && cmake -DTARGET_GROUP=test .. && cmake --build . && ctest Tests/ -V"
+    command: bash -c "chmod +x unit-tests.sh && ./unit-tests.sh"
     depends_on:
     - build-image
     volumes:

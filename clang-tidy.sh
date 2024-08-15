@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eou pipefail
+
 checker=clang-tidy
 dummy_file=dummyfile
 
