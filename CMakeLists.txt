@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.20)
 set(TARGET_GROUP prod CACHE STRING "Target to build for")
 
 if(TARGET_GROUP STREQUAL prod)
-    set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/toolchain.cmake)
+    set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/avr-atmega168a-toolchain.cmake)
     message(STATUS "CMAKE_TOOLCHAIN_FILE is: ${CMAKE_TOOLCHAIN_FILE}")
 elseif(TARGET_GROUP STREQUAL test)
     # do nothing here
