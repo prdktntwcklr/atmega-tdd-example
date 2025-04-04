@@ -4,7 +4,7 @@ FROM ubuntu:22.04
 WORKDIR /app
 
 # copy packages.txt into image
-COPY packages.txt .
+COPY packages.txt /tmp
 
 # set timezone
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && \
@@ -12,7 +12,7 @@ RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && \
 
 # update package information and install required packages
 RUN apt-get update && \
-    xargs -a packages.txt apt-get install -y && \
+    xargs -a /tmp/packages.txt apt-get install -y && \
     pip install --no-cache-dir pre-commit && \
     apt-get autoremove -y && \
     apt-get clean

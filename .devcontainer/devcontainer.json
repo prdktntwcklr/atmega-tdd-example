@@ -12,14 +12,13 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-vscode.cpptools",
-                "twxs.cmake",
-                "ms-vscode.cmake-tools"
+                "ms-vscode.cmake-tools",
+                "ms-vscode.cpptools"
             ],
             "settings": {
                 "terminal.integrated.defaultProfile.linux": "bash"
             }
         }
     },
-    "postStartCommand": "pre-commit --version && pre-commit install"
+    "postCreateCommand": "cp ${containerWorkspaceFolder}/.devcontainer/.bashrc /root/.bashrc"
 }
