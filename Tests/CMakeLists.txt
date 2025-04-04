@@ -1,9 +1,13 @@
 include(FetchContent)
 
+set(unity_version "v2.6.1")
+set(fff_version "v1.1")
+set(fff_hash MD5=10a2d739289c1054f6784fcc7203c8fd)
+
 FetchContent_Declare(
   unity
   GIT_REPOSITORY https://github.com/ThrowTheSwitch/Unity.git
-  GIT_TAG v2.6.0
+  GIT_TAG ${unity_version}
 )
 
 FetchContent_MakeAvailable(unity)
@@ -12,11 +16,13 @@ FetchContent_MakeAvailable(unity)
 set(FFF_DIR "${CMAKE_BINARY_DIR}/_deps/fff")
 
 file(DOWNLOAD
-     "https://github.com/meekrosoft/fff/releases/download/v1.1/fff.h"
-     "${FFF_DIR}/fff.h")
+  "https://github.com/meekrosoft/fff/releases/download/${fff_version}/fff.h"
+  "${FFF_DIR}/fff.h"
+  EXPECTED_HASH ${fff_hash}
+)
 
 # define function to create unit test executables
-function(create_test module_name)
+function(add_unit_test module_name)
   add_executable(test_${module_name} test_${module_name}.c ${CMAKE_SOURCE_DIR}/Src/${module_name}.c)
   target_compile_definitions(test_${module_name} PUBLIC TEST)
   target_include_directories(test_${module_name} PRIVATE ${CMAKE_SOURCE_DIR}/Inc support ${FFF_DIR})
@@ -24,7 +30,7 @@ function(create_test module_name)
   add_test(test_${module_name} test_${module_name})
 endfunction()
 
-create_test(led)
-create_test(main)
-create_test(superloop)
-create_test(timer)
+add_unit_test(led)
+add_unit_test(main)
+add_unit_test(superloop)
+add_unit_test(timer)
