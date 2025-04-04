@@ -12,7 +12,7 @@ echo "     using $checker ...                                    "
 echo " ========================================================= "
 echo ""
 
-$checker -p Build/ Src/*.c -header-filter=.* --quiet > $dummy_file
+$checker -p Build/ --config-file=.clang-tidy Src/*.c -header-filter=.* --quiet > $dummy_file
 
 echo ""
 echo " ========================================================= "
@@ -39,5 +39,3 @@ else
 fi
 
 exit 0
-
-echo ""

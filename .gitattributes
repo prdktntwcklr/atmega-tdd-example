@@ -6,3 +6,4 @@
 
 # declare files that will always have unix-style line endings on checkout
 *.txt text eol=lf
+*.sh text eol=lf

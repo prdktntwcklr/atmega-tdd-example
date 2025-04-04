@@ -13,7 +13,6 @@
             "Atmel",
             "AVRDUDE",
             "binutils",
-            "Ceedling",
             "cmock",
             "Dockerized",
             "Grenning",
@@ -21,8 +20,6 @@
             "microcontroller",
             "PDIP",
             "Pololu"
-        ],
-        "ceedlingExplorer.projectPath": "./Tests",
-        "ceedlingExplorer.debugConfiguration": "Ceedling Test Explorer Debug"
+        ]
     }
 }
