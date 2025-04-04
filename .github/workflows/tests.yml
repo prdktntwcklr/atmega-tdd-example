@@ -8,7 +8,7 @@ on:
 
 jobs:
   static-analysis:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 5
     steps:
       - name: checkout code
@@ -19,8 +19,9 @@ jobs:
         run:  docker compose run --rm build-hex
       - name: run static analysis
         run:  docker compose run --rm static-analysis
+
   unit-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 5
     steps:
       - name: checkout code
