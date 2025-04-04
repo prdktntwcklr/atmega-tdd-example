@@ -1,6 +1,8 @@
 name: build
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
 
@@ -21,7 +23,8 @@ jobs:
       - name: build hex file
         run:  docker compose run --rm build-hex
       - name: upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: App-${{ steps.vars.outputs.sha_short }}
           path: Build/Bin/App.hex
+          retention-days: 7
