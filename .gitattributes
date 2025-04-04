@@ -5,4 +5,5 @@
 * text=auto
 
 # declare files that will always have unix-style line endings on checkout
+*.sh text eol=lf
 *.txt text eol=lf

@@ -20,7 +20,7 @@ described below (see [running unit tests](#running-unit-tests)).
 2. Microcontroller (ATmega168A, 28-PDIP Package)
 3. LED
 4. Current-limiting resistor
-5. Programmer (e.g. Pololu USB AVR Programmer v2.1)
+5. Programmer (e.g. [Pololu USB AVR Programmer v2.1](https://www.pololu.com/product/3172))
 6. Some jumper wires
 
 Details on how to connect these components can be found in
@@ -47,7 +47,7 @@ required packages already installed. To invoke all unit tests, simply run:
 
 This should show that all tests passing:
 
-![All unit tests ran successfully.](Docs/run-unit-tests.jpg)
+![All unit tests ran successfully.](Docs/img/run-unit-tests.jpg)
 
 ## Further reading
 
