@@ -5,3 +5,6 @@ alias ls='ls --color=auto'
 if [ -f /usr/share/bash-completion/completions/git ]; then
     source /usr/share/bash-completion/completions/git
 fi
+
+# install pre-commit hooks
+pre-commit install

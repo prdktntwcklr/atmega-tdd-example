@@ -1,6 +1,6 @@
 {
     "name": "ATmega TDD Example",
-    "dockerFile": "Dockerfile",
+    "dockerFile": "../Dockerfile",
     "runArgs": [
         "--security-opt",
         "label=disable"
@@ -20,5 +20,5 @@
             }
         }
     },
-    "postStartCommand": "pre-commit --version && pre-commit install"
+    "postCreateCommand": "cp ${containerWorkspaceFolder}/.devcontainer/.bashrc /root/.bashrc"
 }

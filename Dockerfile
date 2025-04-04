@@ -21,7 +21,3 @@ RUN apt-get update && \
 RUN apt-get clean -y && \
     apt-get autoremove --purge -y && \
     rm -rf /var/lib/apt/lists/*
-
-# set up custom .bashrc
-COPY .bashrc /tmp
-RUN mv /tmp/.bashrc ~/.bashrc
