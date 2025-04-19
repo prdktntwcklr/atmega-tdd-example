@@ -20,6 +20,17 @@ jobs:
       - name: run static analysis
         run:  docker compose run --rm static-analysis
 
+  code-complexity:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+      - name: build docker image
+        run:  docker compose build
+      - name: run code complexity check
+        run:  docker compose run --rm code-complexity
+
   unit-tests:
     runs-on: ubuntu-22.04
     timeout-minutes: 5

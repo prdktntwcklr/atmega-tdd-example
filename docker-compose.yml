@@ -10,6 +10,13 @@ services:
     - build-image
     volumes:
     - ./:/app
+  code-complexity:
+    image: atmega-tdd
+    command: bash -c "chmod +x code-complexity.sh && ./code-complexity.sh"
+    depends_on:
+    - build-image
+    volumes:
+    - ./:/app
   static-analysis:
     image: atmega-tdd
     command: bash -c "chmod +x clang-tidy.sh && ./clang-tidy.sh"
