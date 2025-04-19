@@ -3,8 +3,7 @@ FROM ubuntu:22.04
 # set working directory
 WORKDIR /app
 
-# copy packages.txt into image
-COPY packages.txt /tmp
+COPY packages.txt requirements.txt /tmp
 
 # set timezone
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && \
@@ -13,7 +12,7 @@ RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && \
 # update package information and install required packages
 RUN apt-get update && \
     xargs -a /tmp/packages.txt apt-get install -y && \
-    pip install --no-cache-dir pre-commit && \
+    pip install --no-cache-dir -r /tmp/requirements.txt && \
     apt-get autoremove -y && \
     apt-get clean
 
