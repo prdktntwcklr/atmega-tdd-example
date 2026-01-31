@@ -1,5 +1,7 @@
 include(FetchContent)
 
+# --- Dependencies ---
+
 set(unity_version "v2.6.1")
 set(fff_version "v1.1")
 set(fff_hash MD5=10a2d739289c1054f6784fcc7203c8fd)
@@ -21,16 +23,61 @@ file(DOWNLOAD
   EXPECTED_HASH ${fff_hash}
 )
 
-# define function to create unit test executables
+# --- Test Configuration ---
+
+set(MODULES led main superloop timer)
+set(TEST_TARGETS "")
+
 function(add_unit_test module_name)
-  add_executable(test_${module_name} test_${module_name}.c ${CMAKE_SOURCE_DIR}/Src/${module_name}.c)
-  target_compile_definitions(test_${module_name} PUBLIC TEST)
-  target_include_directories(test_${module_name} PRIVATE ${CMAKE_SOURCE_DIR}/Inc support ${FFF_DIR})
-  target_link_libraries(test_${module_name} PUBLIC unity)
-  add_test(test_${module_name} test_${module_name})
+    set(target_name test_${module_name})
+    add_executable(${target_name} ${target_name}.c ${CMAKE_SOURCE_DIR}/Src/${module_name}.c)
+
+    target_compile_definitions(${target_name} PUBLIC TEST)
+    target_include_directories(${target_name} PRIVATE ${CMAKE_SOURCE_DIR}/Inc support ${FFF_DIR})
+    target_link_libraries(${target_name} PUBLIC unity)
+
+    # Coverage flags
+    target_compile_options(${target_name} PRIVATE --coverage -O0 -g)
+    target_link_options(${target_name} PRIVATE --coverage)
+
+    add_test(NAME ${target_name} COMMAND $<TARGET_FILE:${target_name}>)
+
+    # Export target name to parent scope to build the dependency list
+    set(TEST_TARGETS ${TEST_TARGETS} ${target_name} PARENT_SCOPE)
 endfunction()
 
-add_unit_test(led)
-add_unit_test(main)
-add_unit_test(superloop)
-add_unit_test(timer)
+# --- Build the Tests ---
+
+foreach(module ${MODULES})
+    add_unit_test(${module})
+endforeach()
+
+# --- Custom Targets ---
+
+find_program(GCOVR_PATH gcovr REQUIRED)
+
+# Combine execution and reporting into one logical flow
+add_custom_target(coverage
+    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
+
+    COMMAND ${GCOVR_PATH} -r ${CMAKE_SOURCE_DIR}
+            --filter ".*/Src/.*"
+            --html-details -o coverage.html
+
+    COMMAND ${GCOVR_PATH} -r ${CMAKE_SOURCE_DIR}
+            --filter ".*/Src/.*"
+            --xml -o coverage.xml
+            --print-summary
+
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    DEPENDS ${TEST_TARGETS}
+    COMMENT "Generating HTML and XML coverage reports..."
+)
+
+# Alias for just running tests without coverage report
+add_custom_target(run_tests
+    COMMAND ${CMAKE_CTEST_COMMAND} -V --output-on-failure
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    DEPENDS ${TEST_TARGETS}
+    COMMENT "Running unit tests..."
+)
