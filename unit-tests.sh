@@ -7,4 +7,4 @@ build_dir=Build
 rm -rf $build_dir/
 mkdir -p $build_dir/
 cmake -DTARGET_GROUP=test -S . -B $build_dir/
-cmake --build $build_dir/ --target coverage_report
+cmake --build $build_dir/ --target coverage
