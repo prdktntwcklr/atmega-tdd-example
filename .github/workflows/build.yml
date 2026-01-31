@@ -2,10 +2,11 @@ name: build
 
 on:
   pull_request:
-    branches: [main]
+    branches:
+      - main
   push:
-    branches: [main]
-
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -14,7 +15,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: determine short GIT hash
         id:   vars
         run:  echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
@@ -23,8 +24,9 @@ jobs:
       - name: build hex file
         run:  docker compose run --rm build-hex
       - name: upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: App-${{ steps.vars.outputs.sha_short }}
           path: Build/Bin/App.hex
           retention-days: 7
+          if-no-files-found: error

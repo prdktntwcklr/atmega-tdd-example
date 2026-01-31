@@ -2,8 +2,8 @@ name: tests
 
 on:
   pull_request:
-    branches: [main]
-
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: build docker image
         run:  docker compose build
       - name: build project
@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: build docker image
         run:  docker compose build
       - name: run code complexity check
@@ -36,8 +36,16 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: build docker image
         run:  docker compose build
-      - name: run unit tests
+      - name: run unit tests (including coverage)
         run:  docker compose run --rm unit-tests
+      - name: Upload to Codecov
+        if: always()
+        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
+        with:
+          fail_ci_if_error: true
+          files: Build/coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
