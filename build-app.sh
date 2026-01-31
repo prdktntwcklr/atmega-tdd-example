@@ -2,9 +2,9 @@
 
 set -eou pipefail
 
-build_dir=Build
+BUILD_DIR="Build"
 
-rm -rf $build_dir/
-mkdir -p $build_dir/
-cmake -S . -B $build_dir/
-cmake --build $build_dir/
+rm -rf ${BUILD_DIR:?}/
+mkdir -p ${BUILD_DIR:?}/
+cmake -S . -B ${BUILD_DIR:?}/
+cmake --build ${BUILD_DIR:?}/

@@ -2,30 +2,36 @@
 
 set -eou pipefail
 
-checker=clang-tidy
-dummy_file=dummyfile
+BUILD_DIR="Build"
+CHECKER="clang-tidy"
+DUMMY_FILE="dummyfile"
+
+if ! command -v "$CHECKER" &> /dev/null; then
+    echo "ERROR $CHECKER is not installed." >&2
+    exit 1
+fi
 
 echo ""
 echo " ========================================================= "
 echo "     Running Static Code Analysis                          "
-echo "     using $checker ...                                    "
+echo "     using $CHECKER ...                                    "
 echo " ========================================================= "
 echo ""
 
-$checker -p Build/ --config-file=.clang-tidy Src/*.c -header-filter=.* --quiet > $dummy_file
+$CHECKER -p ${BUILD_DIR:?}/ --config-file=.clang-tidy Src/*.c -header-filter=.* --quiet > $DUMMY_FILE
 
 echo ""
 echo " ========================================================= "
 echo "     RESULTS                                               "
 echo ""
 
-results=$(cat $dummy_file)
+results=$(cat $DUMMY_FILE)
 
-rm $dummy_file
+rm $DUMMY_FILE
 
 if [[ $results ]]; then
     echo "     FAIL                                                  "
-    echo "     $checker has found problems!                          "
+    echo "     $CHECKER has found problems!                          "
     echo " ========================================================= "
     echo ""
     echo "$results"
@@ -33,7 +39,7 @@ if [[ $results ]]; then
     exit 1
 else
     echo "     SUCCESS                                               "
-    echo "     $checker says code is OK!                             "
+    echo "     $CHECKER says code is OK!                             "
     echo " ========================================================= "
     echo ""
 fi
