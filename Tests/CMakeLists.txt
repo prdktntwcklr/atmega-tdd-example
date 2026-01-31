@@ -27,10 +27,17 @@ function(add_unit_test module_name)
   target_compile_definitions(test_${module_name} PUBLIC TEST)
   target_include_directories(test_${module_name} PRIVATE ${CMAKE_SOURCE_DIR}/Inc support ${FFF_DIR})
   target_link_libraries(test_${module_name} PUBLIC unity)
-  add_test(test_${module_name} test_${module_name})
+  add_test(NAME test_${module_name} COMMAND $<TARGET_FILE:test_${module_name}>)
 endfunction()
 
 add_unit_test(led)
 add_unit_test(main)
 add_unit_test(superloop)
 add_unit_test(timer)
+
+add_custom_target(run_tests
+  COMMAND ${CMAKE_CTEST_COMMAND} -V --output-on-failure
+  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+  DEPENDS test_led test_main test_superloop test_timer
+  COMMENT "Executing all unit tests..."
+)
