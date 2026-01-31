@@ -2,20 +2,20 @@
 
 set -ou pipefail
 
-checker=lizard
+CHECKER="lizard"
 
-if ! command -v "$checker" &> /dev/null; then
-    echo "ERROR $checker is not installed." >&2
+if ! command -v "$CHECKER" &> /dev/null; then
+    echo "ERROR $CHECKER is not installed." >&2
     exit 1
 fi
 
 echo ""
 echo " ========================================================= "
 echo "     Running Code Complexity Analysis                      "
-echo "     using $checker...                                     "
+echo "     using $CHECKER...                                     "
 echo " ========================================================= "
 
-results=$("$checker" Src Inc -w)
+results=$("$CHECKER" Src Inc -w)
 exit_code=$?
 
 echo "     RESULTS                                               "
@@ -25,13 +25,13 @@ if [ "$exit_code" -ne 0 ]; then
     echo "$results"
     echo ""
     echo "     FAIL                                                  "
-    echo "     $checker has found problems!                          "
+    echo "     $CHECKER has found problems!                          "
     echo " ========================================================= "
     exit 1
 fi
 
 echo "     SUCCESS                                               "
-echo "     $checker says code is OK!                             "
+echo "     $CHECKER says code is OK!                             "
 echo " ========================================================= "
 echo ""
 exit 0
