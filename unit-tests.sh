@@ -2,9 +2,9 @@
 
 set -eou pipefail
 
-build_dir=Build
+BUILD_DIR=Build
 
-rm -rf $build_dir/
-mkdir -p $build_dir/
-cmake -DTARGET_GROUP=test -S . -B $build_dir/
-cmake --build $build_dir/ --target coverage
+rm -rf ${BUILD_DIR:?}
+mkdir -p ${BUILD_DIR}
+cmake -DTARGET_GROUP=test -S . -B ${BUILD_DIR}
+cmake --build ${BUILD_DIR} --target coverage
