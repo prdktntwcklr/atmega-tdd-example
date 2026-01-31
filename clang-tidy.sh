@@ -5,7 +5,6 @@ set -eou pipefail
 BUILD_DIR="Build"
 CHECKER="clang-tidy"
 DUMMY_FILE="dummyfile"
-SOURCE_FILES=$(find Src -name "*.c")
 
 if ! command -v "$CHECKER" &> /dev/null; then
     echo "ERROR $CHECKER is not installed." >&2
@@ -19,7 +18,7 @@ echo "     using $CHECKER ...                                    "
 echo " ========================================================= "
 echo ""
 
-$CHECKER -p ${BUILD_DIR:?}/ --config-file=.clang-tidy "${SOURCE_FILES}" -header-filter=.* --quiet > $DUMMY_FILE
+$CHECKER -p ${BUILD_DIR:?}/ --config-file=.clang-tidy Src/*.c -header-filter=.* --quiet > $DUMMY_FILE
 
 echo ""
 echo " ========================================================= "
