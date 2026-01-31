@@ -59,13 +59,19 @@ find_program(GCOVR_PATH gcovr REQUIRED)
 # Combine execution and reporting into one logical flow
 add_custom_target(coverage
     COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
+
     COMMAND ${GCOVR_PATH} -r ${CMAKE_SOURCE_DIR}
             --filter ".*/Src/.*"
             --html-details -o coverage.html
+
+    COMMAND ${GCOVR_PATH} -r ${CMAKE_SOURCE_DIR}
+            --filter ".*/Src/.*"
+            --xml -o coverage.xml
             --print-summary
+
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     DEPENDS ${TEST_TARGETS}
-    COMMENT "Building, running tests, and generating coverage..."
+    COMMENT "Generating HTML and XML coverage reports..."
 )
 
 # Alias for just running tests without coverage report
@@ -73,4 +79,5 @@ add_custom_target(run_tests
     COMMAND ${CMAKE_CTEST_COMMAND} -V --output-on-failure
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     DEPENDS ${TEST_TARGETS}
+    COMMENT "Running unit tests..."
 )
